@@ -1,0 +1,377 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Halal ITS API",
+        "description": "Halal ITS API"
+    },
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Tools",
+            "description": "API for tools in the system"
+        }, {
+            "name": "Products",
+            "description": "API for Product in the system"
+        }, {
+            "name": "Shipment",
+            "description": "API for shipment in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/reach/{channel}/{org}": {
+            "parameters": [
+                { "$ref": "#/parameters/channel" },
+                { "$ref": "#/parameters/organization" }
+            ],
+            "get": {
+                "tags": [
+                    "Tools"
+                ],
+                "description": null,
+                "parameters": [
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                }
+            }
+        },
+
+        "/createProduct/{channel}/{org}": {
+            "parameters": [
+                { "$ref": "#/parameters/channel" },
+                { "$ref": "#/parameters/organization" }
+            ],
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "description": null,
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "body",
+                        "description": "Product that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                }
+            }
+        },
+
+        "/readProduct/{channel}/{org}/{id}": {
+            "parameters": [
+                { "$ref": "#/parameters/channel" },
+                { "$ref": "#/parameters/organization" },
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of Products that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "description": null,
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+
+        "/updateProduct/{channel}/{org}/{id}": {
+            "parameters": [
+                { "$ref": "#/parameters/channel" },
+                { "$ref": "#/parameters/organization" },
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of Product that we want to update",
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "summary": "Update product with give ID",
+                "tags": [
+                    "Products"
+                ],
+                "consumes":[
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "formData",
+                        "in": "body",
+                        "description": "product that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                ],
+                "responses": {
+                }
+            }
+        },
+
+        "/createShip/{channel}/{org}": {
+            "parameters": [
+                { "$ref": "#/parameters/channel" },
+                { "$ref": "#/parameters/organization" }
+            ],
+            "post": {
+                "tags": [
+                    "Shipment"
+                ],
+                "description": null,
+                "parameters": [
+                    {
+                        "name": "ship",
+                        "in": "body",
+                        "description": "Shipment that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Ship"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                }
+            }
+        },
+
+        "/readShip/{channel}/{org}/{id}": {
+            "parameters": [
+                { "$ref": "#/parameters/channel" },
+                { "$ref": "#/parameters/organization" },
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of shipment that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Shipment"
+                ],
+                "description": null,
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+
+        "/updateShip/{channel}/{org}/{id}": {
+            "parameters": [
+                { "$ref": "#/parameters/channel" },
+                { "$ref": "#/parameters/organization" },
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of Shipment that we want to update",
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "summary": "Update shipment with give ID",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes":[
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "formData",
+                        "in": "body",
+                        "description": "Shipment that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Ship"
+                        }
+                    }
+                ],
+                "responses": {
+                }
+            }
+        },
+
+        "/updateShipLocation/{channel}/{org}/{id}": {
+            "parameters": [
+                { "$ref": "#/parameters/channel" },
+                { "$ref": "#/parameters/organization" },
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of order that we want to update",
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "summary": "Update shipment location with give ID",
+                "tags": [
+                    "Shipment"
+                ],
+                "consumes":[
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "formData",
+                        "required": true,
+                        "description": "new location value for shipment",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                }
+            }
+        }
+    },
+
+    "parameters": {
+        "channel": {
+            "name": "channel",
+            "in": "path",
+            "required": true,
+            "description": "Channel name",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "channel0",
+                    "channel1",
+                    "channel2",
+                    "channel3",
+                    "channel4"
+                ]
+            }
+        }, 
+
+        "organization": {
+            "name": "org",
+            "in": "path",
+            "required": true,
+            "description": "Organization name",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "courier",
+                    "supp1",
+                    "supp2",
+                    "supp3",
+                    "cust1",
+                    "cust2",
+                    "cust3"
+                ]
+            }
+        }
+    },
+
+    "definitions": {
+        "Product": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                
+                "name": {
+                    "type": "string"
+                },
+
+                "ingredients": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+
+                "halalCertificate": {
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "type": "string"
+                }
+            }
+        },
+
+        "Ship": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref" : "#/definitions/Product"
+                    }
+                },
+                
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref" : "#/definitions/Item"
+                    }
+                },
+
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+
+        "Item": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+
+                "productId": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

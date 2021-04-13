@@ -1,0 +1,23 @@
+{
+  "name": "csbn-rest-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "nohup node main.js > /dev/null 2>&1 &",
+    "build": "if [ -d 'wallet' ]; then rm -R wallet; fi && npm install && node enrollUser.js"
+  },
+  "author": "sensasi-delight",
+  "license": "",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "fabric-ca-client": "^2.2.4",
+    "fabric-network": "^2.2.4",
+    "js-yaml": "^3.14.0",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
