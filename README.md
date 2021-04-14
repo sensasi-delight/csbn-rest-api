@@ -12,7 +12,6 @@ NETWORK_PATH: # (eg. /home/root/halal-network)
 CHAINCODE_NAME:
 ADMIN_USER:
 ADMIN_PW:
-SERVER_HOST:
 SERVER_PORT:
 CHANNELS:
     - 'channel0'

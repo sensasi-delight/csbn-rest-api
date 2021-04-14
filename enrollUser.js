@@ -49,6 +49,7 @@ async function main(orgName) {
                 certificate: enrollment.certificate,
                 privateKey: enrollment.key.toBytes(),
             },
+            orgName: orgName,
             mspId: mspId,
             type: 'X.509',
         };
