@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "nohup node main.js > /dev/null 2>&1 &",
+    "start": "nohup node main.js > 2>&1 &",
     "build": "if [ -d 'wallet' ]; then rm -R wallet; fi && npm install && node enrollUser.js"
   },
   "author": "sensasi-delight",

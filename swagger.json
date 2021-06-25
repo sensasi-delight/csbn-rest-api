@@ -1,251 +1,460 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Halal ITS API",
-        "description": "Halal ITS API"
+    "swagger":"2.0",
+    "info":{
+        "version":"1.0.0",
+        "title":"csbn API",
+        "description":"csbn API"
     },
-    "basePath": "/",
-    "tags": [
+    "basePath":"/",
+    "tags":[
         {
-            "name": "Tools",
-            "description": "API for tools in the system"
-        }, {
-            "name": "Products",
-            "description": "API for Product in the system"
-        }, {
-            "name": "Shipment",
-            "description": "API for shipment in the system"
+            "name":"Tools",
+            "description":"API for tools in the system"
+        },
+        {
+            "name":"Product",
+            "description":"API for Product in the system"
+        },
+        {
+            "name":"Batch",
+            "description":"API for Batch in the system"
+        },
+        {
+            "name":"Invoice",
+            "description":"API for invoice in the system"
+        },
+        {
+            "name":"Shipment",
+            "description":"API for shipment in the system"
         }
     ],
-    "schemes": [
+    "schemes":[
         "http"
     ],
-    "consumes": [
+    "consumes":[
         "application/json"
     ],
-    "produces": [
+    "produces":[
         "application/json"
     ],
-    "paths": {
-        "/reach/{channel}/{org}": {
-            "parameters": [
-                { "$ref": "#/parameters/channel" },
-                { "$ref": "#/parameters/organization" }
+    "paths":{
+        "/reach/{channel}/{org}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                }
             ],
-            "get": {
-                "tags": [
+            "get":{
+                "tags":[
                     "Tools"
                 ],
-                "description": null,
-                "parameters": [
+                "description":null,
+                "parameters":[
+                    
                 ],
-                "responses": {
+                "responses":{
+                    
                 }
             }
         },
-
-        "/createProduct/{channel}/{org}": {
-            "parameters": [
-                { "$ref": "#/parameters/channel" },
-                { "$ref": "#/parameters/organization" }
+        "/createProduct/{channel}/{org}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                }
             ],
-            "post": {
-                "tags": [
-                    "Products"
+            "post":{
+                "tags":[
+                    "Product"
                 ],
-                "description": null,
-                "parameters": [
+                "description":null,
+                "parameters":[
                     {
-                        "name": "product",
-                        "in": "body",
-                        "description": "Product that we want to create",
-                        "schema": {
-                            "$ref": "#/definitions/Product"
+                        "name":"product",
+                        "in":"body",
+                        "description":"Product that we want to create",
+                        "schema":{
+                            "$ref":"#/definitions/Product"
                         }
                     }
                 ],
-                "responses": {
+                "responses":{
+                    
                 }
             }
         },
-
-        "/readProduct/{channel}/{org}/{id}": {
-            "parameters": [
-                { "$ref": "#/parameters/channel" },
-                { "$ref": "#/parameters/organization" },
+        "/readProduct/{channel}/{org}/{id}":{
+            "parameters":[
                 {
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of Products that we want to find",
-                    "type": "string"
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Products that we want to find",
+                    "type":"string"
                 }
             ],
-            "get": {
-                "tags": [
-                    "Products"
+            "get":{
+                "tags":[
+                    "Product"
                 ],
-                "description": null,
-                "responses": {}
+                "description":null,
+                "responses":{
+                    
+                }
             }
         },
-
-        "/updateProduct/{channel}/{org}/{id}": {
-            "parameters": [
-                { "$ref": "#/parameters/channel" },
-                { "$ref": "#/parameters/organization" },
+        "/readProducts/{channel}/{org}":{
+            "parameters":[
                 {
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of Product that we want to update",
-                    "type": "string"
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
                 }
             ],
-            "put": {
-                "summary": "Update product with give ID",
-                "tags": [
-                    "Products"
+            "get":{
+                "tags":[
+                    "Product"
                 ],
-                "parameters": [
+                "description":null,
+                "responses":{
+                    
+                }
+            }
+        },
+        "/updateProduct/{channel}/{org}/{id}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Product that we want to update",
+                    "type":"string"
+                }
+            ],
+            "put":{
+                "summary":"Update product with give ID",
+                "tags":[
+                    "Product"
+                ],
+                "parameters":[
                     {
-                        "name": "formData",
-                        "in": "body",
-                        "description": "product that we want to create",
-                        "schema": {
-                            "$ref": "#/definitions/Product"
+                        "name":"formData",
+                        "in":"body",
+                        "description":"product that we want to create",
+                        "schema":{
+                            "$ref":"#/definitions/Product"
                         }
                     }
                 ],
-                "responses": {
+                "responses":{
+                    
                 }
             }
         },
 
-        "/createShipment/{channel}/{org}": {
-            "parameters": [
-                { "$ref": "#/parameters/channel" },
-                { "$ref": "#/parameters/organization" }
+        "/createBatch/{channel}/{org}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                }
             ],
-            "post": {
-                "tags": [
-                    "Shipment"
+            "post":{
+                "tags":[
+                    "Batch"
                 ],
-                "description": null,
-                "parameters": [
+                "description":null,
+                "parameters":[
                     {
-                        "name": "shipment",
-                        "in": "body",
-                        "description": "Shipment that we want to create",
-                        "schema": {
-                            "$ref": "#/definitions/Shipment"
+                        "name":"batch",
+                        "in":"body",
+                        "description":"Batch that we want to create",
+                        "schema":{
+                            "$ref":"#/definitions/Batch"
                         }
                     }
                 ],
-                "responses": {
+                "responses":{
+                    
                 }
             }
         },
-
-        "/readShipment/{channel}/{org}/{id}": {
-            "parameters": [
-                { "$ref": "#/parameters/channel" },
-                { "$ref": "#/parameters/organization" },
+        "/readBatch/{channel}/{org}/{id}":{
+            "parameters":[
                 {
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of shipment that we want to find",
-                    "type": "string"
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Batch that we want to find",
+                    "type":"string"
                 }
             ],
-            "get": {
-                "tags": [
-                    "Shipment"
+            "get":{
+                "tags":[
+                    "Batch"
                 ],
-                "description": null,
-                "responses": {}
+                "description":null,
+                "responses":{
+                    
+                }
             }
         },
-
-        "/updateShipment/{channel}/{org}/{id}": {
-            "parameters": [
-                { "$ref": "#/parameters/channel" },
-                { "$ref": "#/parameters/organization" },
+        "/updateBatch/{channel}/{org}/{id}":{
+            "parameters":[
                 {
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of Shipment that we want to update",
-                    "type": "string"
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Batch that we want to update",
+                    "type":"string"
                 }
             ],
-            "put": {
-                "summary": "Update shipment with give ID",
-                "tags": [
-                    "Shipment"
+            "put":{
+                "summary":"Update batch with give ID",
+                "tags":[
+                    "Batch"
                 ],
-                "parameters": [
+                "parameters":[
                     {
-                        "name": "formData",
-                        "in": "body",
-                        "description": "Shipment that we want to update",
-                        "schema": {
-                            "$ref": "#/definitions/Shipment"
+                        "name":"formData",
+                        "in":"body",
+                        "description":"batch that we want to create",
+                        "schema":{
+                            "$ref":"#/definitions/Batch"
                         }
                     }
                 ],
-                "responses": {
+                "responses":{
+                    
                 }
             }
         },
 
-        "/updateShipmentLocation/{channel}/{org}/{id}": {
-            "parameters": [
-                { "$ref": "#/parameters/channel" },
-                { "$ref": "#/parameters/organization" },
+        "/createInvoice/{channel}/{org}":{
+            "parameters":[
                 {
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of order that we want to update",
-                    "type": "string"
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
                 }
             ],
-            "put": {
-                "summary": "Update shipment location with give ID",
-                "tags": [
-                    "Shipment"
+            "post":{
+                "tags":[
+                    "Invoice"
                 ],
-                "consumes":[
-                    "application/x-www-form-urlencoded"
-                ],
-                "parameters": [
+                "description":null,
+                "parameters":[
                     {
-                        "name": "location",
-                        "in": "formData",
-                        "required": true,
-                        "description": "new location value for shipment",
-                        "type": "string"
+                        "in":"body",
+                        "description":"Invoice that we want to create",
+                        "schema":{
+                            "$ref":"#/definitions/Invoice"
+                        }
                     }
                 ],
-                "responses": {
+                "responses":{
+                    
+                }
+            }
+        },
+        "/readInvoice/{channel}/{org}/{id}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Invoice that we want to find",
+                    "type":"string"
+                }
+            ],
+            "get":{
+                "tags":[
+                    "Invoice"
+                ],
+                "description":null,
+                "responses":{
+                    
+                }
+            }
+        },
+        "/updateInvoice/{channel}/{org}/{id}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Invoice that we want to update",
+                    "type":"string"
+                }
+            ],
+            "put":{
+                "summary":"Update Invoice with give ID",
+                "tags":[
+                    "Invoice"
+                ],
+                "parameters":[
+                    {
+                        "in":"body",
+                        "description":"invoice that we want to create",
+                        "schema":{
+                            "$ref":"#/definitions/Invoice"
+                        }
+                    }
+                ],
+                "responses":{
+                    
+                }
+            }
+        },
+
+        "/createShipment/{channel}/{org}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                }
+            ],
+            "post":{
+                "tags":[
+                    "Shipment"
+                ],
+                "description":null,
+                "parameters":[
+                    {
+                        "name":"shipment",
+                        "in":"body",
+                        "description":"Shipment that we want to create",
+                        "schema":{
+                            "$ref":"#/definitions/Shipment"
+                        }
+                    }
+                ],
+                "responses":{
+                    
+                }
+            }
+        },
+        "/readShipment/{channel}/{org}/{id}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of shipment that we want to find",
+                    "type":"string"
+                }
+            ],
+            "get":{
+                "tags":[
+                    "Shipment"
+                ],
+                "description":null,
+                "responses":{
+                    
+                }
+            }
+        },
+        "/updateShipment/{channel}/{org}/{id}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Shipment that we want to update",
+                    "type":"string"
+                }
+            ],
+            "put":{
+                "summary":"Update shipment with give ID",
+                "tags":[
+                    "Shipment"
+                ],
+                "parameters":[
+                    {
+                        "name":"formData",
+                        "in":"body",
+                        "description":"Shipment that we want to update",
+                        "schema":{
+                            "$ref":"#/definitions/Shipment"
+                        }
+                    }
+                ],
+                "responses":{
+                    
                 }
             }
         }
     },
-
-    "parameters": {
-        "channel": {
-            "name": "channel",
-            "in": "path",
-            "required": true,
-            "description": "Channel name",
-            "type": "array",
-            "items": {
-                "type": "string",
-                "enum": [
+    "parameters":{
+        "channel":{
+            "name":"channel",
+            "in":"path",
+            "required":true,
+            "description":"Channel name",
+            "type":"array",
+            "items":{
+                "type":"string",
+                "enum":[
                     "channel0",
                     "channel1",
                     "channel2",
@@ -253,17 +462,16 @@
                     "channel4"
                 ]
             }
-        }, 
-
-        "organization": {
-            "name": "org",
-            "in": "path",
-            "required": true,
-            "description": "Organization name",
-            "type": "array",
-            "items": {
-                "type": "string",
-                "enum": [
+        },
+        "organization":{
+            "name":"org",
+            "in":"path",
+            "required":true,
+            "description":"Organization name",
+            "type":"array",
+            "items":{
+                "type":"string",
+                "enum":[
                     "courier",
                     "supp1",
                     "supp2",
@@ -275,80 +483,169 @@
             }
         }
     },
-
-    "definitions": {
-        "Product": {
-            "required": [
+    "definitions":{
+        "Product":{
+            "required":[
                 "id"
             ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "uniqueItems": true
+            "properties":{
+                "id":{
+                    "type":"string",
+                    "uniqueItems":true
                 },
-                
-                "name": {
-                    "type": "string"
+                "name":{
+                    "type":"string"
                 },
-
-                "ingredients": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
+                "ingredients":{
+                    "type":"array",
+                    "items":{
+                        "type":"string"
                     }
                 },
-
-                "halalCertificate": {
-                    "type": "string"
+                "halalCertificate":{
+                    "type":"string"
                 },
-                "manufacturer": {
-                    "type": "string"
+                "manufacturerId":{
+                    "type":"string"
                 }
             }
         },
-
-        "Shipment": {
-            "required": [
+        "Batch":{
+            "required":[
                 "id"
             ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "uniqueItems": true
+            "properties":{
+                "id":{
+                    "type":"string",
+                    "uniqueItems":true
                 },
-                
-                "productsState": {
-                    "type": "array",
-                    "items": {
-                        "$ref" : "#/definitions/Product"
+                "productState":{
+                    "$ref":"#/definitions/Product"
+                },
+                "qty":{
+                    "type":"integer"
+                },
+                "ingredients":{
+                    "type":"array",
+                    "items":{
+                        "type":"string"
                     }
                 },
-                
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref" : "#/definitions/Item"
+                "invoices":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "id":{
+                                "type":"string"
+                            },
+                            "qty":{
+                                "type":"integer"
+                            }
+                        }
                     }
-                },
-
-                "location": {
-                    "type": "string"
                 }
             }
         },
-
-        "Item": {
-            "required": [
+        "Shipment":{
+            "required":[
+                "id",
+                "fromManufacturerId"
+            ],
+            "properties":{
+                "id":{
+                    "type":"string",
+                    "uniqueItems":true
+                },
+                "invoices":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "id":{
+                                "type":"string"
+                            },
+                            "items":{
+                                "type":"array",
+                                "items":{
+                                    "$ref":"#/definitions/Item"
+                                }
+                            },
+                            "isComplete":{
+                                "type":"boolean"
+                            }
+                        }
+                    }
+                },
+                "history":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "date":{
+                                "type":"string"
+                            },
+                            "location":{
+                                "type":"string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "invoice":{
+            "required":[
                 "id"
             ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "uniqueItems": true
+            "properties":{
+                "id":{
+                    "type":"string",
+                    "uniqueItems":true
                 },
-
-                "productId": {
-                    "type": "string"
+                "sellerId":{
+                    "type":"string"
+                },
+                "buyerId":{
+                    "type":"string"
+                },
+                "courierId":{
+                    "type":"string"
+                },
+                "items":{
+                    "type":"array",
+                    "items":{
+                        "$ref":"#/definitions/Item"
+                    }
+                },
+                "shipmentState":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "id":{
+                                "type":"string"
+                            },
+                            "items":{
+                                "type":"array",
+                                "items":{
+                                    "$ref":"#/definitions/Item"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Item":{
+            "required":[
+                "batchId"
+            ],
+            "properties":{
+                "batchId":{
+                    "type":"string"
+                },
+                "qty":{
+                    "type":"integer"
                 }
             }
         }

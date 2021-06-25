@@ -34,27 +34,6 @@ const disconnect = () => {
     return false;
 }
 
-async function readAsset(contract, type, id, orgName=null) {
-    let read = {};
-
-    if (type == 'Shipment') {
-        read = await contract.evaluateTransaction('readShipment', id);
-    } else if (type == 'Product') {
-        read = await contract.evaluateTransaction('readProduct', id, orgName);
-    }
-
-    let result = JSON.parse(read.toString('utf8'));
-
-    if (type == 'Shipment') {
-        result.productsState = JSON.parse(result.productsState);
-        result.items = JSON.parse(result.items);
-    } else if (type == 'Product') {
-        result.ingredients = JSON.parse(result.ingredients);
-    }
-
-    return result;
-}
-
 const reach = async (req) => {
     const {channelName, orgName} = req.params;
 
@@ -67,120 +46,60 @@ const reach = async (req) => {
 }
 
 
-const readProduct = async (req) => {
-    const {channelName, orgName, id} = req.params;
+
+const readAsset = async (req, type) => {
+
+	const {channelName, orgName, id} = req.params;
+    let keys = [id]
 
     contract = await connect(channelName, orgName)
-    const result = await readAsset(contract, 'Product', id, orgName)
+
+    let read = await contract.evaluateTransaction('readAsset', type, JSON.stringify(keys));
+
     disconnect()
 
-    return result
-}
+    let result = JSON.parse(read.toString('utf8'));
 
-const createProduct = async (req) => {
-    const {channelName, orgName} = req.params;
-    const {id, name, ingredients, halalCertificate, manufacturer} = req.body
-
-    const contract = await connect(channelName, orgName)
-
-    await contract.submitTransaction(
-        'createProduct',
-        id, name, JSON.stringify(ingredients), halalCertificate, manufacturer, orgName
-    );
-
-    const result = await readAsset(contract, 'Product', id, orgName)
-
-
-    disconnect();
     return result;
 }
 
-const updateProduct = async (req) => {
+
+
+
+const createAsset = async (req, type) => {
+
+    const {channelName, orgName} = req.params;
+    const {id} = req.body
+
+    let keys = [id]
+
+    const contract = await connect(channelName, orgName)
+
+    await contract.submitTransaction('createOrUpdateAsset', 'create', type, JSON.stringify(keys), JSON.stringify(req.body))
+
+    disconnect()
+}
+
+const updateAsset = async (req, type) => {
+
     const {id, channelName, orgName} = req.params
-    const {name, ingredients, halalCertificate, manufacturer} = req.body
+
+    let keys = [id]
 
     const contract = await connect(channelName, orgName)
 
-    await contract.submitTransaction(
-        'updateProduct',
-        id, name, JSON.stringify(ingredients), halalCertificate, manufacturer, orgName
-    );
+    await contract.submitTransaction('createOrUpdateAsset', 'update', type, JSON.stringify(keys), JSON.stringify(req.body))
 
-    const result = await readAsset(contract, 'Product', id, orgName)
-
-
-    disconnect();
-    return result;
-}
-
-
-const readShipment = async (req) => {
-    const {channelName, orgName, id} = req.params;
-
-    contract = await connect(channelName, orgName)
-    const result = await readAsset(contract, 'Shipment', id)
     disconnect()
-
-    return result
 }
 
-const createShipment = async (req) => {
-    const {channelName, orgName} = req.params;
-    const {id, productsState, items, location} = req.body;
 
-    const contract = await connect(channelName, orgName)
 
-    await contract.submitTransaction('createShipment',
-        id, JSON.stringify(productsState), JSON.stringify(items), location
-    );
-    const result = await readAsset(contract, 'Shipment', id)
-
-    disconnect();
-    return result;
-}
-
-const updateShipment = async (req) => {
-    const {id, channelName, orgName} = req.params;
-    const {productsState, items, location} = req.body;
-
-    const contract = await connect(channelName, orgName)
-
-    await contract.submitTransaction('updateShipment',
-        id, JSON.stringify(productsState), JSON.stringify(items), location
-    );
-    const result = await readAsset(contract, 'Shipment', id)
-
-    disconnect();
-    return result;
-}
-
-const updateShipmentLocation = async (req) => {
-    const {id, channelName, orgName} = req.params;
-    const {location} = req.body;
-
-    const contract = await connect(channelName, orgName)
-
-    await contract.submitTransaction('updateShipmentLocation', id, location);
-    const result = await readAsset(contract, 'Shipment', id)
-
-    disconnect();
-    return result;
-}
 
 module.exports = {
     reach: reach,
 
-    readProduct: readProduct,
-    // readAllProducts: readAllProducts,
-    createProduct: createProduct,
-    updateProduct: updateProduct,
-
-
-    readShipment: readShipment,
-    // readAllOrders: readAllOrders,
-    createShipment: createShipment,
-    updateShipment: updateShipment,
-
-
-    updateShipmentLocation: updateShipmentLocation
+    readAsset: readAsset,
+    createAsset: createAsset,
+    updateAsset: updateAsset
 }
