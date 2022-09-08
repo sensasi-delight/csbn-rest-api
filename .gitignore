@@ -11,6 +11,9 @@ node_modules/
 jspm_packages/
 package-lock.json
 env.yaml
+images/
+tempImg/
+
 
 # Compiled TypeScript files
 dist

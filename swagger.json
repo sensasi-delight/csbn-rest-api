@@ -26,6 +26,14 @@
         {
             "name":"Shipment",
             "description":"API for shipment in the system"
+        },
+        {
+            "name":"Slaughterer",
+            "description":"API for slaughterer in the system"
+        },
+        {
+            "name":"Image",
+            "description":"API for Image in the system"
         }
     ],
     "schemes":[
@@ -53,10 +61,10 @@
                 ],
                 "description":null,
                 "parameters":[
-                    
+
                 ],
                 "responses":{
-                    
+
                 }
             }
         },
@@ -73,19 +81,19 @@
                 "tags":[
                     "Product"
                 ],
-                "description":null,
+                "description": null,
                 "parameters":[
                     {
-                        "name":"product",
-                        "in":"body",
-                        "description":"Product that we want to create",
+                        "name": "product",
+                        "in": "body",
+                        "description": "Product that we want to create",
                         "schema":{
                             "$ref":"#/definitions/Product"
                         }
                     }
                 ],
                 "responses":{
-                    
+
                 }
             }
         },
@@ -111,7 +119,7 @@
                 ],
                 "description":null,
                 "responses":{
-                    
+
                 }
             }
         },
@@ -130,7 +138,7 @@
                 ],
                 "description":null,
                 "responses":{
-                    
+
                 }
             }
         },
@@ -166,7 +174,7 @@
                     }
                 ],
                 "responses":{
-                    
+
                 }
             }
         },
@@ -196,7 +204,7 @@
                     }
                 ],
                 "responses":{
-                    
+
                 }
             }
         },
@@ -222,17 +230,44 @@
                 ],
                 "description":null,
                 "responses":{
-                    
+
                 }
             }
         },
-        "/updateBatch/{channel}/{org}/{id}":{
+		"/readBatches/{channel}/{org}":{
             "parameters":[
                 {
                     "$ref":"#/parameters/channel"
                 },
                 {
                     "$ref":"#/parameters/organization"
+                }
+            ],
+            "get":{
+                "tags": [
+                    "Batch"
+                ],
+                "description": null,
+                "responses":{
+
+                },
+				"parameters": [
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "date range",
+						"type": "string"
+                    }
+                ]
+            }
+        },
+        "/updateBatch/{channel}/{org}/{id}":{
+            "parameters":[
+                {
+                    "$ref": "#/parameters/channel"
+                },
+                {
+                    "$ref": "#/parameters/organization"
                 },
                 {
                     "name":"id",
@@ -258,7 +293,7 @@
                     }
                 ],
                 "responses":{
-                    
+
                 }
             }
         },
@@ -287,7 +322,7 @@
                     }
                 ],
                 "responses":{
-                    
+
                 }
             }
         },
@@ -313,7 +348,7 @@
                 ],
                 "description":null,
                 "responses":{
-                    
+
                 }
             }
         },
@@ -348,7 +383,7 @@
                     }
                 ],
                 "responses":{
-                    
+
                 }
             }
         },
@@ -378,7 +413,7 @@
                     }
                 ],
                 "responses":{
-                    
+
                 }
             }
         },
@@ -404,7 +439,7 @@
                 ],
                 "description":null,
                 "responses":{
-                    
+
                 }
             }
         },
@@ -440,7 +475,137 @@
                     }
                 ],
                 "responses":{
-                    
+
+                }
+            }
+        },
+		"/createSlaughterer/{channel}/{org}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                }
+            ],
+            "post":{
+                "tags":[
+                    "Slaughterer"
+                ],
+                "description":null,
+                "parameters":[
+                    {
+                        "name":"slaughterer",
+                        "in":"body",
+                        "description":"Slaughterer that we want to create",
+                        "schema":{
+                            "$ref":"#/definitions/Slaughterer"
+                        }
+                    }
+                ],
+                "responses":{
+
+                }
+            }
+        },
+        "/readSlaughterer/{channel}/{org}/{id}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Slaughterer that we want to find",
+                    "type":"string"
+                }
+            ],
+            "get":{
+                "tags":[
+                    "Slaughterer"
+                ],
+                "description":null,
+                "responses":{
+
+                }
+            }
+        },
+		"/readSlaughterers/{channel}/{org}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                }
+            ],
+            "get":{
+                "tags":[
+                    "Slaughterer"
+                ],
+                "description":null,
+                "responses":{
+
+                }
+            }
+        },
+        "/updateSlaughterer/{channel}/{org}/{id}":{
+            "parameters":[
+                {
+                    "$ref":"#/parameters/channel"
+                },
+                {
+                    "$ref":"#/parameters/organization"
+                },
+                {
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "description":"ID of Slaughterer that we want to update",
+                    "type":"string"
+                }
+            ],
+            "put":{
+                "summary":"Update Slaughterer with give ID",
+                "tags":[
+                    "Slaughterer"
+                ],
+                "parameters":[
+                    {
+                        "name":"formData",
+                        "in":"body",
+                        "description":"Slaughterer that we want to update",
+                        "schema":{
+                            "$ref":"#/definitions/Slaughterer"
+                        }
+                    }
+                ],
+                "responses":{
+
+                }
+            }
+        },
+		"/image/upload":{
+            "post":{
+                "tags":[
+                    "Image"
+                ],
+                "description":null,
+				"consumes": ["multipart/form-data"],
+                "parameters":[
+                    {
+                        "name":"imgFile",
+                        "in":"formData",
+                        "description":"img file",
+						"type": "file"
+                    }
+                ],
+                "responses":{
+
                 }
             }
         }
@@ -496,23 +661,24 @@
                 "name":{
                     "type":"string"
                 },
+				"imgPath":{
+                    "type":"string"
+                },
                 "ingredients":{
                     "type":"array",
                     "items":{
                         "type":"string"
                     }
                 },
-                "halalCertificate":{
-                    "type":"string"
-                },
-                "manufacturerId":{
+                "halalCertificateId":{
                     "type":"string"
                 }
             }
         },
         "Batch":{
             "required":[
-                "id"
+                "id",
+				"date"
             ],
             "properties":{
                 "id":{
@@ -521,6 +687,9 @@
                 },
                 "productState":{
                     "$ref":"#/definitions/Product"
+                },
+				"date":{
+                    "type":"string"
                 },
                 "qty":{
                     "type":"integer"
@@ -550,12 +719,15 @@
         "Shipment":{
             "required":[
                 "id",
-                "fromManufacturerId"
+				"date"
             ],
             "properties":{
                 "id":{
                     "type":"string",
                     "uniqueItems":true
+                },
+				"date":{
+                    "type":"string"
                 },
                 "invoices":{
                     "type":"array",
@@ -593,14 +765,18 @@
                 }
             }
         },
-        "invoice":{
+        "Invoice":{
             "required":[
-                "id"
+                "id",
+				"date"
             ],
             "properties":{
                 "id":{
                     "type":"string",
                     "uniqueItems":true
+                },
+				"date":{
+                    "type":"string"
                 },
                 "sellerId":{
                     "type":"string"
@@ -646,6 +822,28 @@
                 },
                 "qty":{
                     "type":"integer"
+                }
+            }
+        },
+		"Slaughterer":{
+            "required":[
+                "id"
+            ],
+            "properties":{
+                "id":{
+                    "type":"string"
+                },
+				"name":{
+                    "type":"string"
+                },
+                "imgUrl":{
+                    "type":"string"
+                },
+                "certificateNo":{
+                    "type":"string"
+                },
+				"certificateImgUrl":{
+                    "type":"string"
                 }
             }
         }

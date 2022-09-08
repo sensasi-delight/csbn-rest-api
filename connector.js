@@ -48,49 +48,77 @@ const reach = async (req) => {
 
 
 const readAsset = async (req, type) => {
-
 	const {channelName, orgName, id} = req.params;
-    let keys = [id]
 
+	const keys = makeAssetKeys(type, req.query.orgName || orgName, req.query.date, id)
+	// const keys = [id]
+	
     contract = await connect(channelName, orgName)
-
-    let read = await contract.evaluateTransaction('readAsset', type, JSON.stringify(keys));
+    const read = await contract.evaluateTransaction('readAsset', type, JSON.stringify(keys));
 
     disconnect()
 
-    let result = JSON.parse(read.toString('utf8'));
-
-    return result;
+    return JSON.parse(read.toString('utf8'))
 }
 
 
+const readAssets = async (req, type) => {
+	const {channelName, orgName} = req.params;
+	const {date} = req.query;
+
+	const keys = makeAssetKeys(type, req.query.orgName || orgName, date)
+
+    contract = await connect(channelName, orgName)
+    const read = await contract.evaluateTransaction('readAssets', type, JSON.stringify(keys));
+
+    disconnect()
+
+    return JSON.parse(read.toString('utf8'))
+}
 
 
 const createAsset = async (req, type) => {
-
     const {channelName, orgName} = req.params;
-    const {id} = req.body
+    const { id, date } = req.body
 
-    let keys = [id]
+	const keys = makeAssetKeys(type, orgName, date, id)
+	// const keys = [id]
 
     const contract = await connect(channelName, orgName)
-
     await contract.submitTransaction('createOrUpdateAsset', 'create', type, JSON.stringify(keys), JSON.stringify(req.body))
 
     disconnect()
 }
 
+
 const updateAsset = async (req, type) => {
-
     const {id, channelName, orgName} = req.params
+    const { date } = req.body
 
-    let keys = [id]
+	const keys = makeAssetKeys(type, orgName, date, id)
+	// const keys = [id]
 
     const contract = await connect(channelName, orgName)
-
     await contract.submitTransaction('createOrUpdateAsset', 'update', type, JSON.stringify(keys), JSON.stringify(req.body))
 
     disconnect()
+}
+
+
+const makeAssetKeys = (type, orgName, date, id=null) => {
+	let keys = []
+
+	if (['Product', 'Batch', 'Slaughterer'].indexOf(type) !== -1) {
+		keys.push(orgName)
+	}
+
+	if (['Batch', 'Shipment', 'Invoice'].indexOf(type) !== -1) {
+		keys = keys.concat(date.substr(2).split('-'))
+	}
+
+	if(id != null) keys.push(id)
+
+	return keys
 }
 
 
@@ -100,6 +128,7 @@ module.exports = {
     reach: reach,
 
     readAsset: readAsset,
+    readAssets: readAssets,
     createAsset: createAsset,
     updateAsset: updateAsset
 }

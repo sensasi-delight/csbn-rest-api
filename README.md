@@ -21,13 +21,20 @@ CHANNELS:
     - 'channel4'
 
 ORGS:
-    - 'courier'
-    - 'supp1'
-    - 'supp2'
-    - 'supp3'
-    - 'cust1'
-    - 'cust2'
-    - 'cust3'
+    - id: 111111		# organization ID
+      name: 'supp1'		# organization name
+    - id: 222222
+      name: 'supp2'
+    - id: 333333
+      name: 'supp3'
+    - id: 444444
+      name: 'cust1'
+    - id: 555555
+      name: 'cust2'
+    - id: 666666
+      name: 'cust3'
+    - id: 777777
+      name: 'courier'
 ```
 
 ## build
