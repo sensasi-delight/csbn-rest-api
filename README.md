@@ -1,14 +1,24 @@
-# Preq
-1. nodejs & npm
+# Chicken Slaughterer Blockchain Network: REST API Server
 
-## env.yaml
-### Copy-paste file env.yaml.example
+## Pre-requisite
+1. nodejs ^v15.8.0
+2. npm ^v6.14.8
+
+## Installation
+
+### 1. klon repositori ke mesin server
+```bash
+git clone sensasi-delight/csbn-rest-api
+```
+
+### 2. Copy-paste file env.yaml.example
 ```bash
 cp env.yaml.example env.yaml
 ```
-### isi nilai variabel sesuai dengan peer/org yang dituju
+### 3. Isi nilai variabel pada file `env.yaml` sesuai dengan peer/org yang dituju
 ```yaml
 NETWORK_PATH: # (eg. /home/root/halal-network)
+NETWORK: 
 CHAINCODE_NAME:
 ADMIN_USER:
 ADMIN_PW:
@@ -21,23 +31,20 @@ CHANNELS:
     - 'channel4'
 
 ORGS:
-    - id: 111111		# organization ID
-      name: 'supp1'		# organization name
-    - id: 222222
-      name: 'supp2'
-    - id: 333333
-      name: 'supp3'
-    - id: 444444
-      name: 'cust1'
-    - id: 555555
-      name: 'cust2'
-    - id: 666666
-      name: 'cust3'
-    - id: 777777
-      name: 'courier'
+    - 'supp1'
+    - 'supp2'
+    - 'supp3'
+    - 'cust1'
+    - 'cust2'
+    - 'cust3'
+    - 'courier'
+
+SSL_KEY_FILE: 
+SSL_CERT_FILE: 
+SSL_CA_FILE: 
 ```
 
-## build
+### 4. build
 ```bash
 npm run build
 ```
@@ -45,8 +52,8 @@ dilakukan untuk
 1. install dependecy
 1. membangun ulang 'wallet' [(apa itu wallet?)](https://hyperledger-fabric.readthedocs.io/en/release-2.3/developapps/wallet.html)
 
-# Start
-jalankan server REST API (swagger) dengan perintah:
+## Menjalankan server
+jalankan server REST API dan swagger dengan perintah:
 ```bash
 npm start
 ```
