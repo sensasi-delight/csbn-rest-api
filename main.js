@@ -19,8 +19,8 @@ const express = require('express'),
 
 
 // read ENV file
-let fileContents = fs.readFileSync('./env.yaml', 'utf8');
-let ENV = yaml.safeLoad(fileContents);
+const fileContents = fs.readFileSync('./env.yaml', 'utf8');
+const ENV = yaml.safeLoad(fileContents);
 
 console.log(ENV);
 
@@ -300,8 +300,9 @@ https
     // Provide the private and public key to the server by reading each
     // file's content with the readFileSync() method.
     {
-      key: fs.readFileSync("key.pem"),
-      cert: fs.readFileSync("cert.pem"),
+      key: fs.readFileSync(ENV.SSL_KEY_FILE),
+      cert: fs.readFileSync(ENV.SSL_CERT_FILE),
+      ca: fs.readFileSync(ENV.SSL_CA_FILE)
     },
     app
   ).listen(ENV.SERVER_PORT, () => {
