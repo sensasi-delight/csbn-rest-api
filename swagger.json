@@ -36,9 +36,6 @@
             "description":"API for Image in the system"
         }
     ],
-    "schemes":[
-        "http"
-    ],
     "consumes":[
         "application/json"
     ],
