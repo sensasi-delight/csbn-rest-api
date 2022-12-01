@@ -1,4 +1,4 @@
-# Chicken Slaughterer Blockchain Network: REST API Server
+# REST API Server for Chicken Slaughtering Blockchain Network
 
 ## Pre-requisite
 1. nodejs ^v15.8.0
